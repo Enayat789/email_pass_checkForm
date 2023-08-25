@@ -1,0 +1,59 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+.main {
+  background-color: blueviolet;
+  background-image: url(./images/bg\ form\ gradient.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 100vw;
+  height: 100vh;
+  gap: 10px;
+}
+
+.login_text {
+  /* background-color: rgb(16, 132, 132); */
+  width: 30%;
+  height: 10%;
+  color: white;
+  font-size: 20px;
+}
+.form {
+  /* background-color: cadetblue; */
+  width: 30%;
+  height: 30%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#email,
+#password {
+  /* background-color: blue; */
+  width: 80%;
+  height: 15%;
+  border: none;
+  outline: none;
+  padding: 6px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+#login {
+  width: 80%;
+  height: 17%;
+  border: 2px solid green;
+  outline: none;
+  font-size: 17px;
+  border-radius: 10px;
+  color: green;
+}

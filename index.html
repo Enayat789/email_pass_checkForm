@@ -14,11 +14,22 @@
       </div>
       <div class="form">
         <label for="email"></label>
-        <input type="email" placeholder="Email or User Name" id="email" />
+        <div class="commonDiv">
+          <input type="email" placeholder="Email or User Name" id="email" />
+          <img src="./images/iconEmail.png" alt="" />
+        </div>
         <br />
         <br />
         <label for="password"></label>
-        <input type="text" id="password" placeholder="Password" />
+        <div class="commonDiv">
+          <input type="password" id="password" placeholder="Password" />
+          <img
+            src="./images/iconHidePassword.png"
+            id="passwordIcon"
+            alt=""
+            onclick="changePasswordVisibility()"
+          />
+        </div>
         <br />
         <br />
         <button id="login" onclick="loginForm()">Login</button>

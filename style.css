@@ -6,7 +6,7 @@
 
 .main {
   background-color: blueviolet;
-  background-image: url(./images/bg\ form\ gradient.jpeg);
+  background-image: url(./images/bgFormGradient.jpeg);
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -20,14 +20,12 @@
 }
 
 .login_text {
-  /* background-color: rgb(16, 132, 132); */
   width: 30%;
   height: 10%;
   color: white;
   font-size: 20px;
 }
 .form {
-  /* background-color: cadetblue; */
   width: 30%;
   height: 30%;
   display: flex;
@@ -36,14 +34,29 @@
   justify-content: center;
 }
 
+.commonDiv {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 35vw;
+  height: 7vh;
+  position: relative;
+}
+.commonDiv > img {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  right: 5px;
+}
+
 #email,
 #password {
-  /* background-color: blue; */
-  width: 80%;
-  height: 15%;
+  padding: 10px;
+  width: 100%;
+  height: 80%;
   border: none;
   outline: none;
-  padding: 6px;
   font-size: 15px;
   border-radius: 5px;
 }

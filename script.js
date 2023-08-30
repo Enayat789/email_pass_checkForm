@@ -2,46 +2,37 @@ function loginForm() {
   let emailid = document.getElementById("email").value;
   let password = document.getElementById("password").value;
 
+  let passwordCheck = password.length;
+  let checkEmail = emailid.includes("@gmail.com");
+
+  // console.log("passwordCheck", passwordCheck);
+  // console.log("checkEmail", checkEmail);
+
   if (emailid === "" && password === "") {
-    alert("Please enter email and password!! , it can't be empty!!");
-  } else if (emailid == "") {
-    // checking the password length
-    const passwordCheck = password.length;
-    if (passwordCheck < 8) {
-      alert(
-        "Please enter emailid and Password length must be atleast 8 characters"
-      );
-    } else {
-      alert("Please enter emailid. It can't be empty!! ");
-    }
-  } else if (password == "") {
-    // checking the emailId(@)
-    const checkEmail = emailid.indexOf("@gmail.com");
-    if (checkEmail == -1) {
-      alert(
-        "email is not valid and Please enter password. It can't be empty!! "
-      );
-    } else {
-      alert("Please enter password. It can't be empty!! ");
+    const msg = "Please enter email and password!! , it can't be empty!!";
+    showToast(msg, "invalid");
+  } else if (emailid == "" || password == "") {
+    if (emailid == "") {
+      const msg = "Please enter emailid. It can't be empty!! ";
+      showToast(msg, "error");
+    } else if (password == "") {
+      const msg = "Please enter Password. It can't be empty!! ";
+      showToast(msg, "error");
     }
   } else {
-    // checking the emailId(@)
-    const checkEmail = emailid.indexOf("@gmail.com");
-    const passwordCheck = password.length;
-
-    if (checkEmail == -1) {
-      const passwordCheck = password.length;
-      if (passwordCheck < 8) {
-        alert(
-          " email is not valid and Password length must be atleast 8 characters"
-        );
-      } else {
-        alert("email is not valid");
-      }
-    } else if (passwordCheck < 8) {
-      alert("Password length must be atleast 8 characters");
-    } else {
-      alert(emailid + "\n" + password);
+    if (!checkEmail) {
+      const msg = "email is not valid";
+      showToast(msg, "invalid");
+      //
+    }
+    // else if (passwordCheck < 8) {
+    //   // console.log("passwordCheck inside ,", passwordCheck);
+    //   const msg = "Password length must be atleast 8 characters";
+    //   showToast(msg, "invalid");
+    // }
+    else {
+      const msg = `${emailid + "\n" + password}`;
+      showToast(msg, "success");
     }
   }
 
@@ -59,4 +50,37 @@ function changePasswordVisibility() {
     passwordInput.type = "password";
     passwordIcon.src = "./images/iconHidePassword.png";
   }
+}
+
+// toast function - for show alert toast
+let toastBox = document.getElementById("toastBox");
+const toast = document.createElement("div");
+toast.className = "toast";
+
+function showToast(message, type) {
+  switch (type) {
+    case "success":
+      toast.classList.add("Success");
+      toast.innerHTML = message;
+
+      break;
+    case "error":
+      toast.classList.add("Error");
+      toast.innerHTML = message;
+
+      break;
+    case "invalid":
+      toast.classList.add("Invalid");
+      toast.innerHTML = message;
+
+      break;
+    default:
+      console.log("please see all toast type , may be some type issue !!");
+      break;
+  }
+  toastBox.appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
 }

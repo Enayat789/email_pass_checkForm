@@ -70,3 +70,126 @@
   border-radius: 10px;
   color: green;
 }
+
+
+
+
+/* // new css */
+
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+/* body {
+  background: gray;
+} */
+
+.buttons {
+  background-color: rgba(128, 128, 128, 0.429);
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.buttons button {
+  width: 120px;
+  height: 40px;
+  /* padding: 10px; */
+  border: none;
+  outline: none;
+  font-size: 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
+}
+
+.buttons button:hover {
+  background-color: gray;
+  color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+
+#toastBox {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.toast {
+  background-color: white;
+  padding: 10px;
+  width: 300px;
+  height: 70px;
+  margin: 10px 0;
+  display: flex;
+  font-weight: 500;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 5px;
+  gap: 20px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: relative;
+  transform: translateX(100%);
+  animation: moveLeft 0.6s linear forwards;
+}
+
+@keyframes moveLeft {
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.toast img {
+  background-color: rgba(0, 128, 0, 0.791);
+  border-radius: 20px;
+  width: 30px;
+  height: 30px;
+}
+
+.toast.Success img {
+  background-color: rgb(18, 92, 5);
+}
+.toast.Error img {
+  background-color: orange;
+}
+
+.toast.Invalid img {
+  background-color: rgba(255, 0, 0, 0.854);
+}
+
+.toast::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 5px;
+  background-color: green;
+
+  animation: anim 6s linear forwards;
+}
+
+@keyframes anim {
+  100% {
+    width: 0;
+  }
+}
+
+.toast.error::after {
+  background-color: orange;
+}
+
+.toast.Invalid::after {
+  background-color: red;
+}

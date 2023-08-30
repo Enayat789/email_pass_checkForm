@@ -5,32 +5,38 @@ function loginForm() {
   let passwordCheck = password.length;
   let checkEmail = emailid.includes("@gmail.com");
 
-  // console.log("passwordCheck", passwordCheck);
-  // console.log("checkEmail", checkEmail);
-
   if (emailid === "" && password === "") {
     const msg = "Please enter email and password!! , it can't be empty!!";
-    showToast(msg, "invalid");
+    showToast(msg, "error");
   } else if (emailid == "" || password == "") {
     if (emailid == "") {
       const msg = "Please enter emailid. It can't be empty!! ";
       showToast(msg, "error");
     } else if (password == "") {
-      const msg = "Please enter Password. It can't be empty!! ";
-      showToast(msg, "error");
+      if (!checkEmail) {
+        const msg = "email is not valid and also enter password";
+        showToast(msg, "invalid");
+        //
+      } else {
+        const msg = "Please enter Password. It can't be empty!! ";
+        showToast(msg, "error");
+      }
     }
   } else {
     if (!checkEmail) {
-      const msg = "email is not valid";
-      showToast(msg, "invalid");
+      if (passwordCheck < 8) {
+        const msg =
+          "Email is not valid and Password length must be atleast 8 characters";
+        showToast(msg, "invalid");
+      } else {
+        const msg = "email is not valid";
+        showToast(msg, "invalid");
+      }
       //
-    }
-    // else if (passwordCheck < 8) {
-    //   // console.log("passwordCheck inside ,", passwordCheck);
-    //   const msg = "Password length must be atleast 8 characters";
-    //   showToast(msg, "invalid");
-    // }
-    else {
+    } else if (passwordCheck < 8) {
+      const msg = "Password length must be atleast 8 characters";
+      showToast(msg, "invalid");
+    } else {
       const msg = `${emailid + "\n" + password}`;
       showToast(msg, "success");
     }
@@ -61,17 +67,17 @@ function showToast(message, type) {
   switch (type) {
     case "success":
       toast.classList.add("Success");
-      toast.innerHTML = message;
+      toast.innerHTML = `<img src="images/checkMark_icon.png" > ${message}`;
 
       break;
     case "error":
       toast.classList.add("Error");
-      toast.innerHTML = message;
+      toast.innerHTML = `<img src="images/exclamation-mark.png" > ${message}`;
 
       break;
     case "invalid":
       toast.classList.add("Invalid");
-      toast.innerHTML = message;
+      toast.innerHTML = `<img src="images/circle_xmark_icon.png" > ${message}`;
 
       break;
     default:

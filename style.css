@@ -4,34 +4,59 @@
   box-sizing: border-box;
 }
 
+body {
+  /* background-color: blueviolet; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(238, 174, 202);
+  background: radial-gradient(
+    circle,
+    rgba(238, 174, 202, 1) 0%,
+    rgba(148, 187, 233, 1) 100%
+  );
+
+  width: 100vw;
+  height: 100vh;
+}
+
 .main {
-  background-color: blueviolet;
-  background-image: url(./images/bgFormGradient.jpeg);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.329);
+  /* background-color: white; */
+  opacity: 0.7;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  width: 100vw;
-  height: 100vh;
-  gap: 10px;
+  width: 40vw;
+  height: 50vh;
+  border-radius: 10px;
+  box-shadow: 0 29px 52px rgba(0, 0, 0, 0.4), 0 25px 16px rgba(0, 0, 0, 0.2);
+  /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
+  /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
+    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
+    0 16px 16px rgba(0, 0, 0, 0.12); */
 }
 
 .login_text {
-  width: 30%;
-  height: 10%;
-  color: white;
-  font-size: 20px;
-}
-.form {
-  width: 30%;
-  height: 30%;
+  width: 100%;
+  height: 20%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: black;
+  font-size: 20px;
+  /* background-color: aqua; */
+}
+.form {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* background-color: rgb(170, 33, 128); */
 }
 
 .commonDiv {
@@ -39,15 +64,20 @@
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 35vw;
+  width: 20vw;
   height: 7vh;
   position: relative;
 }
+/* .commonDiv:hover{
+  background-color: aqua;
+} */
 .commonDiv > img {
   width: 30px;
   height: 30px;
   position: absolute;
   right: 5px;
+  background-color: white;
+  cursor: pointer;
 }
 
 #email,
@@ -59,68 +89,41 @@
   outline: none;
   font-size: 15px;
   border-radius: 5px;
+  border: 2px solid white;
+  /* background-color: yellow; */
+}
+#email:hover,
+#password:hover {
+  border: 2px solid rgba(128, 128, 128, 0.575);
 }
 
 #login {
-  width: 80%;
-  height: 17%;
-  border: 2px solid green;
+  cursor: pointer;
+  width: 20vw;
+  height: 6vh;
+  border: 2px solid rgba(0, 128, 0, 0.637);
   outline: none;
   font-size: 17px;
   border-radius: 10px;
+  color: rgba(0, 128, 0, 0.776);
+}
+#login:hover {
   color: green;
+  background-color: rgba(124, 223, 124, 0.392);
 }
 
-/* // new css */
-
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-}
-
-/* body {
-  background: gray;
-} */
-
-.buttons {
-  background-color: rgba(128, 128, 128, 0.429);
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-}
-
-.buttons button {
-  width: 120px;
-  height: 40px;
-  /* padding: 10px; */
-  border: none;
-  outline: none;
-  font-size: 15px;
-  border-radius: 5px;
-  cursor: pointer;
-  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
-}
-
-.buttons button:hover {
-  background-color: gray;
-  color: white;
-  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-}
+/* // new css ******************************/
 
 #toastBox {
   position: absolute;
-  bottom: 30px;
+  top: 20px;
   right: 30px;
   display: flex;
   flex-direction: column;
-  align-items: flex-end;
+  text-align: left;
+  /* align-items:center; */
   overflow: hidden;
-  padding: 20px;
+  padding: 10px;
 }
 
 .toast {
@@ -139,6 +142,7 @@
   position: relative;
   transform: translateX(100%);
   animation: moveLeft 0.6s linear forwards;
+  overflow: hidden;
 }
 
 @keyframes moveLeft {
@@ -148,7 +152,6 @@
 }
 
 .toast img {
-  /* background-color: rgba(0, 128, 0, 0.791); */
   border-radius: 20px;
   width: 30px;
   height: 30px;
@@ -172,8 +175,7 @@
   left: 0;
   width: 100%;
   height: 5px;
-  /* background-color: green; */
-  animation: anim 6s linear forwards;
+  animation: anim 4s linear forwards;
 }
 
 @keyframes anim {

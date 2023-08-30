@@ -60,10 +60,14 @@ function changePasswordVisibility() {
 
 // toast function - for show alert toast
 let toastBox = document.getElementById("toastBox");
-const toast = document.createElement("div");
-toast.className = "toast";
+// const toast = document.createElement("div");
+// toast.className = "toast";
 
 function showToast(message, type) {
+  const toast = document.createElement("div");
+  toast.className = "toast";
+
+  //
   switch (type) {
     case "success":
       toast.classList.add("Success");
@@ -88,5 +92,5 @@ function showToast(message, type) {
 
   setTimeout(() => {
     toast.remove();
-  }, 3000);
+  }, 4000);
 }

@@ -37,8 +37,28 @@ function loginForm() {
       const msg = "Password length must be atleast 8 characters";
       showToast(msg, "invalid");
     } else {
-      const msg = `${emailid + "\n" + password}`;
-      showToast(msg, "success");
+      const existingDataJSON = localStorage.getItem("credentials");
+      let existingData = [];
+
+      if (existingDataJSON) {
+        existingData = JSON.parse(existingDataJSON);
+      }
+
+      const payload = { emailid, password }; // creating a new object
+
+      existingData.push(payload); // push to existingData array
+
+      // storing the data in local storage
+      localStorage.setItem("credentials", JSON.stringify(existingData));
+
+      // getting the from local storage
+      const userData = JSON.parse(localStorage.getItem("credentials"));
+
+      if (userData && userData.length > 0) {
+        const lastObject = userData[userData.length - 1];
+        const msg = `${lastObject.emailid + "\n" + lastObject.password}`;
+        showToast(msg, "success");
+      }
     }
   }
 
@@ -60,8 +80,6 @@ function changePasswordVisibility() {
 
 // toast function - for show alert toast
 let toastBox = document.getElementById("toastBox");
-// const toast = document.createElement("div");
-// toast.className = "toast";
 
 function showToast(message, type) {
   const toast = document.createElement("div");

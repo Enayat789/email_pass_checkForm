@@ -1,3 +1,4 @@
+//login
 function loginForm() {
   let emailid = document.getElementById("email").value;
   let password = document.getElementById("password").value;
@@ -37,34 +38,46 @@ function loginForm() {
       const msg = "Password length must be atleast 8 characters";
       showToast(msg, "invalid");
     } else {
-      const existingDataJSON = localStorage.getItem("credentials");
-      let existingData = [];
-
-      if (existingDataJSON) {
-        existingData = JSON.parse(existingDataJSON);
-      }
-
+      //
       const payload = { emailid, password }; // creating a new object
 
-      existingData.push(payload); // push to existingData array
+      if (!localStorage.getItem("credentials")) {
+        localStorage.setItem("credentials", JSON.stringify(payload));
+      } else {
+        alert("user alredy created");
+      }
 
-      // storing the data in local storage
-      localStorage.setItem("credentials", JSON.stringify(existingData));
+      ///
+      // getting the data from local storage
 
-      // getting the from local storage
-      const userData = JSON.parse(localStorage.getItem("credentials"));
+      if (JSON.parse(localStorage.getItem("credentials"))) {
+        const userData = JSON.parse(localStorage.getItem("credentials"));
 
-      if (userData && userData.length > 0) {
-        const lastObject = userData[userData.length - 1];
-        const msg = `${lastObject.emailid + "\n" + lastObject.password}`;
-        showToast(msg, "success");
+        // descrtructirug
+        const { emailid, password } = userData;
+
+        const showData = document.getElementById("displayData");
+        showData.style.display = "flex";
+
+        const showDiv = document.createElement("div");
+        showDiv.id = "showDiv";
+        showDiv.innerHTML = `
+        <p>Your Email Id: ${emailid}</p>
+        <p>Your password: ${password}</p>
+        `;
+
+        const checkData = document.getElementById("displayData").innerHTML;
+        if (checkData === "") {
+          showData.appendChild(showDiv);
+        }
       }
     }
   }
-
-  // *******
 }
 
+function clearForm() {}
+
+// **************
 function changePasswordVisibility() {
   const passwordInput = document.getElementById("password");
   const passwordIcon = document.getElementById("passwordIcon");

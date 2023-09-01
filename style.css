@@ -7,6 +7,7 @@
 body {
   /* background-color: blueviolet; */
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background: rgb(238, 174, 202);
@@ -15,6 +16,7 @@ body {
     rgba(238, 174, 202, 1) 0%,
     rgba(148, 187, 233, 1) 100%
   );
+  gap: 40px;
 
   width: 100vw;
   height: 100vh;
@@ -22,7 +24,6 @@ body {
 
 .main {
   background-color: rgba(255, 255, 255, 0.329);
-  /* background-color: white; */
   opacity: 0.7;
   display: flex;
   flex-direction: column;
@@ -31,11 +32,7 @@ body {
   width: 40vw;
   height: 50vh;
   border-radius: 10px;
-  box-shadow: 0 29px 52px rgba(0, 0, 0, 0.4), 0 25px 16px rgba(0, 0, 0, 0.2);
-  /* box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22); */
-  /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12),
-    0 4px 4px rgba(0, 0, 0, 0.12), 0 8px 8px rgba(0, 0, 0, 0.12),
-    0 16px 16px rgba(0, 0, 0, 0.12); */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
 .login_text {
@@ -76,7 +73,7 @@ body {
   height: 30px;
   position: absolute;
   right: 5px;
-  background-color: white;
+  /* background-color: rgb(224, 19, 19); */
   cursor: pointer;
 }
 
@@ -192,4 +189,29 @@ body {
 }
 .toast.Invalid::after {
   background-color: red;
+}
+
+/* ****** displayData */
+
+#displayData {
+  display: none;
+  width: 40vw;
+  height: 30vh;
+  border-radius: 10px;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(255, 255, 255, 0.329);
+  opacity: 0.7;
+  box-shadow: 0 29px 52px rgba(0, 0, 0, 0.4), 0 25px 16px rgba(0, 0, 0, 0.2);
+}
+
+#showDiv {
+  width: 70%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 17px;
 }

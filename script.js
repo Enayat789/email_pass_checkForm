@@ -46,31 +46,40 @@ function loginForm() {
       } else {
         alert("user alredy created");
       }
-
+      createView();
       ///
       // getting the data from local storage
+    }
+  }
+}
 
-      if (JSON.parse(localStorage.getItem("credentials"))) {
-        const userData = JSON.parse(localStorage.getItem("credentials"));
+window.addEventListener("load", function () {
+  // Your code to handle the page load event here
+  createView();
+});
 
-        // descrtructirug
-        const { emailid, password } = userData;
+// create logged in user View--
 
-        const showData = document.getElementById("displayData");
-        showData.style.display = "flex";
+function createView() {
+  if (JSON.parse(localStorage.getItem("credentials"))) {
+    const userData = JSON.parse(localStorage.getItem("credentials"));
 
-        const showDiv = document.createElement("div");
-        showDiv.id = "showDiv";
-        showDiv.innerHTML = `
-        <p>Your Email Id: ${emailid}</p>
-        <p>Your password: ${password}</p>
-        `;
+    // descrtructirug
+    const { emailid, password } = userData;
 
-        const checkData = document.getElementById("displayData").innerHTML;
-        if (checkData === "") {
-          showData.appendChild(showDiv);
-        }
-      }
+    const showData = document.getElementById("displayData");
+    showData.style.display = "flex";
+
+    const showDiv = document.createElement("div");
+    showDiv.id = "showDiv";
+    showDiv.innerHTML = `
+    <p>Your Email Id: ${emailid}</p>
+    <p>Your password: ${password}</p>
+    `;
+
+    const checkData = document.getElementById("displayData").innerHTML;
+    if (checkData === "") {
+      showData.appendChild(showDiv);
     }
   }
 }

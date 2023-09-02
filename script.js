@@ -2,8 +2,13 @@
 function loginForm() {
   let emailid = document.getElementById("email").value;
   let password = document.getElementById("password").value;
+  let confirmPassword = document.getElementById("confirmPassword").value;
+  let contactNumber = document.getElementById("phNumber").value;
+  let profilePicture = document.getElementById("avatar").value;
+  // console.log(profilePicture);
 
   let passwordCheck = password.length;
+  let contactCheck = contactNumber.length;
   let checkEmail = emailid.includes("@gmail.com");
 
   if (emailid === "" && password === "") {
@@ -20,7 +25,7 @@ function loginForm() {
         //
       } else {
         const msg = "Please enter Password. It can't be empty!! ";
-        showToast(msg, "error");
+        showToast(msg, "invalid");
       }
     }
   } else {
@@ -37,15 +42,23 @@ function loginForm() {
     } else if (passwordCheck < 8) {
       const msg = "Password length must be atleast 8 characters";
       showToast(msg, "invalid");
+    } else if (password != confirmPassword) {
+      const msg = "Password does not match!! ";
+      showToast(msg, "invalid");
+    } else if (contactCheck < 10 || contactCheck > 10) {
+      const msg = "Invalid Contact Number!! ";
+      showToast(msg, "invalid");
     } else {
-      const payload = { emailid, password }; // creating a new object
+      const payload = { emailid, password, contactNumber }; // creating a new object
 
       if (!localStorage.getItem("credentials")) {
         localStorage.setItem("credentials", JSON.stringify(payload));
       } else {
         alert("user alredy created");
       }
-      createView();
+      const containerDiv = document.getElementById("parentContainer");
+      containerDiv.style.display = "flex";
+      // createView();
       createNavbar();
     }
   }
@@ -53,8 +66,28 @@ function loginForm() {
 
 window.addEventListener("load", function () {
   // Your code to handle the page load event here
-  createView();
+
+  if (localStorage.getItem("credentials")) {
+    const containerDiv = document.getElementById("parentContainer");
+    containerDiv.style.display = "flex";
+    createView();
+    createNavbar();
+  }
 });
+
+// show the image from the input file
+
+const getImage = function (event) {
+  const showImage = document.getElementById("showImage");
+  showImage.style.display = "block";
+  //
+
+  const uploadedImage = document.getElementById("uploadedImage");
+  uploadedImage.src = URL.createObjectURL(event.target.files[0]);
+  uploadedImage.onload = function () {
+    URL.revokeObjectURL(uploadedImage.src); // free memory
+  };
+};
 
 // create logged in user View--
 
@@ -99,11 +132,14 @@ function createNavbar() {
   createLogoDiv.innerHTML = `<h2>LOGO</h2>`;
   navbar.appendChild(createLogoDiv);
 
-  let emailid = document.getElementById("email").value;
+  // let emailid = document.getElementById("email").value;
+  const userData = JSON.parse(localStorage.getItem("credentials"));
+  const { emailid, password } = userData;
 
   const createEmailDiv = document.createElement("div");
   createEmailDiv.id = "emailDiv";
-  createEmailDiv.innerHTML = `<h5> Email: ${emailid} </h5>`;
+  createEmailDiv.innerHTML = `<i class="fa-solid fa-user fa-2x " onclick="alert('Emailid: ${emailid}')"> </i>`;
+
   navbar.appendChild(createEmailDiv);
 }
 
@@ -112,11 +148,15 @@ function changePasswordVisibility() {
   const passwordInput = document.getElementById("password");
   const passwordIcon = document.getElementById("passwordIcon");
 
+  const confirmPasswordInput = document.getElementById("confirmPassword");
+
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
+    confirmPasswordInput.type = "text"; // confirm password
     passwordIcon.classList = "fa-solid fa-unlock fa-2x";
   } else {
     passwordInput.type = "password";
+    confirmPasswordInput.type = "password"; // confirm password
     passwordIcon.classList = "fa-solid fa-lock fa-2x";
   }
 }

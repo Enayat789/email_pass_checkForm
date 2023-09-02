@@ -11,11 +11,13 @@
     ></script>
   </head>
   <body>
-    <!-- ********* navbar  ***** -->
-    <nav id="navbar"></nav>
-    <!-- ********* box  ***** -->
-    <div id="behindForm">
-      <div id="displayData"></div>
+    <div class="parentContainer" id="parentContainer">
+      <!-- ********* navbar  ***** -->
+      <nav id="navbar"></nav>
+      <!-- ********* box  ***** -->
+      <div id="behindForm">
+        <!-- <div id="displayData"></div> -->
+      </div>
     </div>
 
     <!--  -->
@@ -24,20 +26,16 @@
         <div id="toastBox"></div>
 
         <div class="login_text">
-          <h2>Login</h2>
+          <h2>Register</h2>
           <p>Please enter your Email Id and Password</p>
         </div>
 
         <!-- *****  form -->
         <div class="form">
-          <label for="email"></label>
           <div class="commonDiv">
             <input type="email" placeholder="Email or User Name" id="email" />
             <i class="fa-solid fa-envelope fa-2x"></i>
           </div>
-          <br />
-          <br />
-          <label for="password"></label>
           <div class="commonDiv">
             <input type="password" id="password" placeholder="Password" />
             <i
@@ -46,8 +44,33 @@
               onclick="changePasswordVisibility()"
             ></i>
           </div>
-          <br />
-          <br />
+          <div class="commonDiv">
+            <input
+              type="password"
+              id="confirmPassword"
+              placeholder="Confirm Password"
+            />
+          </div>
+          <div class="commonDiv">
+            <input type="number" id="phNumber" placeholder="Contact Number" />
+          </div>
+          <div class="profilePicture">
+            <input
+              type="file"
+              id="avatar"
+              name="avatar"
+              accept="image/*"
+              onchange="getImage(event)"
+            />
+            <label for="avatar">
+              <i class="fa-solid fa-upload"></i> Choose a picture
+            </label>
+            <div id="showImage">
+              <img id="uploadedImage" />
+            </div>
+          </div>
+
+          <!-- SUBMIT BUTTON ********* -->
           <button id="login" onclick="loginForm()">Login</button>
         </div>
       </div>

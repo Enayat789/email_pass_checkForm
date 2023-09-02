@@ -38,7 +38,6 @@ function loginForm() {
       const msg = "Password length must be atleast 8 characters";
       showToast(msg, "invalid");
     } else {
-      //
       const payload = { emailid, password }; // creating a new object
 
       if (!localStorage.getItem("credentials")) {
@@ -47,8 +46,7 @@ function loginForm() {
         alert("user alredy created");
       }
       createView();
-      ///
-      // getting the data from local storage
+      createNavbar();
     }
   }
 }
@@ -84,7 +82,30 @@ function createView() {
   }
 }
 
-function clearForm() {}
+// ********************* Creating navbar ***************
+
+function createNavbar() {
+  const container = document.getElementById("container");
+  container.style.display = "none";
+
+  const behindForm = document.getElementById("behindForm");
+  behindForm.style.display = "flex";
+
+  const navbar = document.getElementById("navbar");
+  navbar.style.display = "flex";
+
+  const createLogoDiv = document.createElement("div");
+  createLogoDiv.id = "logoDiv";
+  createLogoDiv.innerHTML = `<h2>LOGO</h2>`;
+  navbar.appendChild(createLogoDiv);
+
+  let emailid = document.getElementById("email").value;
+
+  const createEmailDiv = document.createElement("div");
+  createEmailDiv.id = "emailDiv";
+  createEmailDiv.innerHTML = `<h5> Email: ${emailid} </h5>`;
+  navbar.appendChild(createEmailDiv);
+}
 
 // **************
 function changePasswordVisibility() {
@@ -93,10 +114,10 @@ function changePasswordVisibility() {
 
   if (passwordInput.type === "password") {
     passwordInput.type = "text";
-    passwordIcon.src = "./images/iconShowPassword.png";
+    passwordIcon.classList = "fa-solid fa-unlock fa-2x";
   } else {
     passwordInput.type = "password";
-    passwordIcon.src = "./images/iconHidePassword.png";
+    passwordIcon.classList = "fa-solid fa-lock fa-2x";
   }
 }
 

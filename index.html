@@ -5,42 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="./style.css" />
+    <script
+      src="https://kit.fontawesome.com/6c048b98cd.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
-    <div class="main">
-      <div id="toastBox"></div>
-
-      <div class="login_text">
-        <h2>Login</h2>
-        <p>Please enter your Email Id and Password</p>
-      </div>
-
-      <!-- ***** -->
-      <div class="form">
-        <label for="email"></label>
-        <div class="commonDiv">
-          <input type="email" placeholder="Email or User Name" id="email" />
-          <img src="./images/iconEmail.png" alt="" />
-        </div>
-        <br />
-        <br />
-        <label for="password"></label>
-        <div class="commonDiv">
-          <input type="password" id="password" placeholder="Password" />
-          <img
-            src="./images/iconHidePassword.png"
-            id="passwordIcon"
-            alt=""
-            onclick="changePasswordVisibility()"
-          />
-        </div>
-        <br />
-        <br />
-        <button id="login" onclick="loginForm()">Login</button>
-      </div>
+    <!-- ********* navbar  ***** -->
+    <nav id="navbar"></nav>
+    <!-- ********* box  ***** -->
+    <div id="behindForm">
+      <div id="displayData"></div>
     </div>
 
-    <div id="displayData"></div>
+    <!--  -->
+    <div id="container">
+      <div class="main">
+        <div id="toastBox"></div>
+
+        <div class="login_text">
+          <h2>Login</h2>
+          <p>Please enter your Email Id and Password</p>
+        </div>
+
+        <!-- *****  form -->
+        <div class="form">
+          <label for="email"></label>
+          <div class="commonDiv">
+            <input type="email" placeholder="Email or User Name" id="email" />
+            <i class="fa-solid fa-envelope fa-2x"></i>
+          </div>
+          <br />
+          <br />
+          <label for="password"></label>
+          <div class="commonDiv">
+            <input type="password" id="password" placeholder="Password" />
+            <i
+              class="fa-solid fa-lock fa-2x"
+              id="passwordIcon"
+              onclick="changePasswordVisibility()"
+            ></i>
+          </div>
+          <br />
+          <br />
+          <button id="login" onclick="loginForm()">Login</button>
+        </div>
+      </div>
+      <div id="displayData"></div>
+    </div>
 
     <script src="./script.js"></script>
   </body>

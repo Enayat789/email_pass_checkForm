@@ -11,16 +11,29 @@ async function loginForm() {
   let contactCheck = contactNumber.length;
   let checkEmail = emailid.includes("@gmail.com");
 
-  if (userName == "") {
-    const msg = "Please enter your Full Name!! ";
-    showToast(msg, "invalid");
-    //
-  } else if (emailid === "" && password === "") {
-    const msg = "Please enter email and password!! , it can't be empty!!";
+  if (
+    !profileInput &&
+    userName == "" &&
+    emailid === "" &&
+    password === "" &&
+    contactNumber == ""
+  ) {
+    const msg = "Please enter all the inputs!! , they can't be empty!!";
     showToast(msg, "error");
     //
-  } else if (emailid == "" || password == "" || userName == "") {
-    if (emailid == "") {
+  } else if (
+    !profileInput ||
+    userName == "" ||
+    emailid == "" ||
+    password == ""
+  ) {
+    if (!profileInput) {
+      const msg = "Please select a file!! ";
+      showToast(msg, "invalid");
+    } else if (userName == "") {
+      const msg = "Please enter your Full Name!! ";
+      showToast(msg, "invalid");
+    } else if (emailid == "") {
       const msg = "Please enter emailid. It can't be empty!! ";
       showToast(msg, "error");
     } else if (password == "") {
@@ -70,8 +83,9 @@ async function loginForm() {
         }
         const containerDiv = document.getElementById("parentContainer");
         containerDiv.style.display = "flex";
-        // createView();
         createNavbar();
+        const msg = "congratulations ! succesfully logged in ";
+        showToast(msg, "success");
       } catch (error) {
         // if any error,
         console.log("err haii kuch !!");
@@ -86,8 +100,10 @@ window.addEventListener("load", function () {
   if (localStorage.getItem("credentials")) {
     const containerDiv = document.getElementById("parentContainer");
     containerDiv.style.display = "flex";
-    // createView();
+
     createNavbar();
+    const msg = "already logged in ";
+    showToast(msg, "success");
   }
 });
 
@@ -95,7 +111,7 @@ window.addEventListener("load", function () {
 
 const getImage = function (event) {
   const showImage = document.getElementById("showImage");
-  showImage.style.display = "block";
+  showImage.style.display = "flex";
 
   const uploadedImage = document.getElementById("uploadedImage");
   uploadedImage.src = URL.createObjectURL(event.target.files[0]);
@@ -152,14 +168,6 @@ function createView() {
     `;
     showData.appendChild(showDiv);
 
-    // const checkData = document.getElementById("displayData").innerHTML;
-    // if (checkData === "") {
-    //   showData.appendChild(showDiv);
-    // }
-
-    // const showData = document.getElementById("displayData");
-    // showData.style.display = "block";
-
     if (isOpen) {
       isOpen = false;
       showData.id = "displayData";
@@ -205,18 +213,17 @@ function createNavbar() {
 
 // **************
 function changePasswordVisibility() {
-  const passwordInput = document.getElementById("password");
+  // const passwordInput = document.getElementById("password");
   const passwordIcon = document.getElementById("passwordIcon");
-
   const confirmPasswordInput = document.getElementById("confirmPassword");
 
-  if (passwordInput.type === "password") {
-    passwordInput.type = "text";
-    confirmPasswordInput.type = "text"; // confirm password
+  if (confirmPasswordInput.type === "password") {
+    confirmPasswordInput.type = "text";
+    //confirmPasswordInput.type = "text"; // confirm password
     passwordIcon.classList = "fa-solid fa-unlock fa-2x";
   } else {
-    passwordInput.type = "password";
-    confirmPasswordInput.type = "password"; // confirm password
+    confirmPasswordInput.type = "password";
+    //confirmPasswordInput.type = "password"; // confirm password
     passwordIcon.classList = "fa-solid fa-lock fa-2x";
   }
 }

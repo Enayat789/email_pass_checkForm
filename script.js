@@ -141,10 +141,14 @@ function createView() {
     const showDiv = document.createElement("div");
     showDiv.id = "showDiv";
     showDiv.innerHTML = `
-    <img src=${profileImage} id='' />
-    <p>Full Name: ${userName}</p>
-    <p>Your Email: ${emailid}</p>
-    <p>Your Contact Number: ${contactNumber}</p>
+    <div class = "innerProfileImageDiv">
+      <img src=${profileImage} id='' />
+    </div>
+    <div class ="innerProfileDataDiv">
+      <p>Full Name: ${userName}</p>
+      <p>Your Email: ${emailid}</p>
+      <p>Your Contact Number: ${contactNumber}</p>
+    </div>
     `;
     showData.appendChild(showDiv);
 

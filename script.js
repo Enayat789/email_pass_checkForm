@@ -68,6 +68,8 @@ async function loginForm() {
     } else {
       try {
         const profileImageBase64 = await fileToBase64(profileInput);
+        console.log(profileImageBase64);
+
         const payload = {
           userName,
           emailid,
@@ -93,32 +95,48 @@ async function loginForm() {
     }
   }
 }
-
+// when page load, this will check local storage..
+// if localstorage has same key, then it will show already logged in data ..
 window.addEventListener("load", function () {
-  // Your code to handle the page load event here
-
   if (localStorage.getItem("credentials")) {
     const containerDiv = document.getElementById("parentContainer");
     containerDiv.style.display = "flex";
 
     createNavbar();
     const msg = "already logged in ";
-    showToast(msg, "success");
+    // showToast(msg, "success");
   }
 });
 
-// show the image from the input file taken from user
+// taking image from input file and then passing to getImage()
+//then showing in form
 
-const getImage = function (event) {
-  const showImage = document.getElementById("showImage");
-  showImage.style.display = "flex";
+function imageFromFileinput(event) {
+  const file = event.target.files[0];
+  const uploadImage = getImage(file); // passing to getImage() function
 
   const uploadedImage = document.getElementById("uploadedImage");
-  uploadedImage.src = URL.createObjectURL(event.target.files[0]);
-  uploadedImage.onload = function () {
-    URL.revokeObjectURL(uploadedImage.src); // free memory
-  };
+  uploadedImage.src = uploadImage;
+
+  const showImage = document.getElementById("showImage");
+  showImage.style.display = "flex";
+}
+
+// generate uplaoded image file to object URL only.
+// this function will only return object URL only..
+const getImage = function (file) {
+  return URL.createObjectURL(file);
 };
+
+// update new image
+// only for upload and preview new profile picture
+function newImageUpload(event) {
+  const file = event.target.files[0];
+  const image = getImage(file); // calling getimage() to convert object URL
+  if (image) {
+    document.getElementById("previewProfile").src = image;
+  }
+}
 
 // Function to convert a file to base64 using a callback
 function fileToBase64(file) {
@@ -139,46 +157,20 @@ function fileToBase64(file) {
   });
 }
 
-// create logged in user View--
-
+// close the profile section
 var isOpen = false; // boolean  true / false
 
-// ***
-function createView() {
-  if (JSON.parse(localStorage.getItem("credentials"))) {
-    const userData = JSON.parse(localStorage.getItem("credentials"));
+function closeProfile() {
+  const showData = document.getElementById("displayData_2");
 
-    // descrtructirug
-    const { emailid, userName, contactNumber, profileImage } = userData;
-
-    const showData = document.getElementById("displayData");
-    // showData.style.display = "block";
-
-    const showDiv = document.createElement("div");
-    showDiv.id = "showDiv";
-    showDiv.innerHTML = `
-    <div class = "innerProfileImageDiv">
-      <img src=${profileImage} id='' />
-    </div>
-    <div class ="innerProfileDataDiv">
-      <p>Full Name: ${userName}</p>
-      <p>Your Email: ${emailid}</p>
-      <p>Your Contact Number: ${contactNumber}</p>
-    </div>
-    `;
-    showData.appendChild(showDiv);
-
-    if (isOpen) {
-      isOpen = false;
-      showData.id = "displayData";
-    } else {
-      isOpen = true;
-      showData.id = "displayData_2";
-    }
+  if (isOpen) {
+    isOpen = false;
+    showData.id = "displayData";
+  } else {
+    isOpen = true;
+    showData.id = "displayData_2";
   }
 }
-
-// ********************* Creating navbar ***************
 
 function createNavbar() {
   const container = document.getElementById("container");
@@ -195,9 +187,9 @@ function createNavbar() {
   createLogoDiv.innerHTML = `<h2>LOGO</h2>`;
   navbar.appendChild(createLogoDiv);
 
-  // let emailid = document.getElementById("email").value;
   const userData = JSON.parse(localStorage.getItem("credentials"));
   const { emailid, password, profileImage } = userData;
+  // console.log("this is profile ", profileImage);
 
   const createEmailDiv = document.createElement("div");
   const profilePic = document.createElement("img");
@@ -211,19 +203,120 @@ function createNavbar() {
   navbar.appendChild(createEmailDiv);
 }
 
+// create logged in user View--
+
+function createView() {
+  if (JSON.parse(localStorage.getItem("credentials"))) {
+    //
+    if (document.getElementById("showDiv")) {
+      if (!isOpen) {
+        const showData = document.getElementById("displayData");
+        isOpen = true;
+        showData.id = "displayData_2";
+      }
+    } else {
+      const userData = JSON.parse(localStorage.getItem("credentials"));
+      // descrtructirug
+      const { emailid, userName, contactNumber, profileImage } = userData;
+
+      const showData = document.getElementById("displayData");
+
+      const showDiv = document.createElement("div");
+      showDiv.id = "showDiv";
+      showDiv.innerHTML = `
+      <div class = "innerProfileImageDiv">
+         <img id='previewProfile' src= "${profileImage}" />
+         <label for="updatepictute"> 
+          <i class="fa-solid fa-camera" id="editProfileImage" >
+          <input type="file" id="updatepictute" name="updatepictute" accept="image/*" onchange='newImageUpload(event)' />
+          </i>
+         </label>
+      </div>
+      <div class ="innerProfileDataDiv">
+         <span>Name:</span> 
+         <input type='text' value=${userName} id="nameInput" /> 
+         </br>
+         <span>Email:</span> 
+         <input type='text' value=${emailid} id="emailInput"/>
+         </br>
+         <span>Contact Number:</span> 
+         <input type='number' value=${contactNumber} id="numberInput" /> 
+      </div>
+      <div class ="editProfileDetails">
+       <button id="editButton" onclick='updateProfile()'>UPDATE PROFILE</button>
+      </div>
+      <div class ="logoutUser">     
+       <button id="editButton" onclick='logout()'>Logout</button>
+      </div>
+      `;
+      showData.appendChild(showDiv);
+
+      if (!isOpen) {
+        isOpen = true;
+        showData.id = "displayData_2";
+      }
+    }
+  }
+}
+
+// taking the new value from input text in the profile section and the a file as a image for profile picture
+async function updatedData() {
+  const userName = document.getElementById("nameInput").value;
+  const emailid = document.getElementById("emailInput").value;
+  const contactNumber = document.getElementById("numberInput").value;
+  const updatedProfileImage = document.getElementById("updatepictute").files[0];
+  // console.log("images taken", updatedProfileImage);
+
+  if (updatedProfileImage == undefined) {
+    if (JSON.parse(localStorage.getItem("credentials"))) {
+      const alreadyData = JSON.parse(localStorage.getItem("credentials")); // getting data from local storage in a variable
+      const { profileImage } = alreadyData; // taking the image from the local storage
+
+      const payload = {
+        userName,
+        emailid,
+        contactNumber,
+        profileImage,
+      };
+      localStorage.setItem("credentials", JSON.stringify(payload));
+      //
+    } else {
+      alert("data is not there");
+    }
+    //
+  } else {
+    try {
+      const profileUpdatedImage = await fileToBase64(updatedProfileImage);
+
+      const payload = {
+        userName,
+        emailid,
+        contactNumber,
+        profileImage: profileUpdatedImage,
+      }; // creating a new object
+
+      if (JSON.parse(localStorage.getItem("credentials"))) {
+        localStorage.setItem("credentials", JSON.stringify(payload));
+      } else {
+        alert("data is not there");
+      }
+    } catch (error) {
+      console.log("something is error");
+    }
+  }
+}
+
+// ********************* Creating navbar ***************
 // **************
 function changePasswordVisibility() {
-  // const passwordInput = document.getElementById("password");
   const passwordIcon = document.getElementById("passwordIcon");
   const confirmPasswordInput = document.getElementById("confirmPassword");
 
   if (confirmPasswordInput.type === "password") {
     confirmPasswordInput.type = "text";
-    //confirmPasswordInput.type = "text"; // confirm password
     passwordIcon.classList = "fa-solid fa-unlock fa-2x";
   } else {
     confirmPasswordInput.type = "password";
-    //confirmPasswordInput.type = "password"; // confirm password
     passwordIcon.classList = "fa-solid fa-lock fa-2x";
   }
 }
@@ -261,4 +354,25 @@ function showToast(message, type) {
   setTimeout(() => {
     toast.remove();
   }, 4000);
+}
+
+// lougout function
+// this function will check first the localstorage
+// then remove exsisiting user from localstorage...
+function logout() {
+  if (JSON.parse(localStorage.getItem("credentials"))) {
+    localStorage.removeItem("credentials");
+    location.reload(); // page reloading
+  }
+}
+
+// update profile
+// this function will firstly check the localstorage
+// then it will update the exixiting user by latest inputs or base64 images
+function updateProfile() {
+  if (JSON.parse(localStorage.getItem("credentials"))) {
+    const alreadyData = JSON.parse(localStorage.getItem("credentials"));
+    // console.log("alreadyData", alreadyData);
+    updatedData();
+  }
 }

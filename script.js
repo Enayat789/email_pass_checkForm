@@ -184,7 +184,7 @@ function createNavbar() {
 
   const createLogoDiv = document.createElement("div");
   createLogoDiv.id = "logoDiv";
-  createLogoDiv.innerHTML = `<h2>LOGO</h2>`;
+  createLogoDiv.innerHTML = `<i class="fa-brands fa-reddit fa-4x" onclick='location.reload()'></i>`;
   navbar.appendChild(createLogoDiv);
 
   const userData = JSON.parse(localStorage.getItem("credentials"));
@@ -278,6 +278,7 @@ async function updatedData() {
         contactNumber,
         profileImage,
       };
+
       localStorage.setItem("credentials", JSON.stringify(payload));
       //
     } else {
@@ -371,8 +372,8 @@ function logout() {
 // then it will update the exixiting user by latest inputs or base64 images
 function updateProfile() {
   if (JSON.parse(localStorage.getItem("credentials"))) {
-    const alreadyData = JSON.parse(localStorage.getItem("credentials"));
-    // console.log("alreadyData", alreadyData);
+    // const alreadyData = JSON.parse(localStorage.getItem("credentials"));
+
     updatedData();
   }
 }

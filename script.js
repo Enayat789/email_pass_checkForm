@@ -104,7 +104,7 @@ window.addEventListener("load", function () {
 
     createNavbar();
     const msg = "already logged in ";
-    // showToast(msg, "success");
+    showToast(msg, "success");
   }
 });
 

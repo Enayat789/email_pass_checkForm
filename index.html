@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Registration Form</title>
     <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="./productForm.css" />
     <script
       src="https://kit.fontawesome.com/6c048b98cd.js"
       crossorigin="anonymous"
@@ -26,8 +27,50 @@
         ></i>
       </div>
       <div id="behindForm">
-        <div></div>
-        <div></div>
+        <!-- form for product **** -->
+        <div id="productForm">
+          <div class="product_heading">
+            <p>Product Form</p>
+          </div>
+          <div class="form_product">
+            <label for="productImage">
+              <input
+                type="file"
+                id="productImage"
+                name="productImage"
+                accept="image/*"
+                onchange="imgFor_product(event)"
+              />
+              <i class="fa-solid fa-upload"> Choose a picture</i>
+              <img id="takeProductImage" />
+            </label>
+            <!-- **** -->
+            <input
+              type="text"
+              id="prd_name"
+              name="prd_name"
+              placeholder="Product Name..."
+            />
+            <!-- <br /> -->
+            <textarea
+              name="prd_description"
+              id="prd_description"
+              cols="20"
+              rows="5"
+              placeholder="product description..."
+            ></textarea>
+            <!-- <br /> -->
+            <input
+              type="button"
+              id="add_product"
+              value="Add Product"
+              onclick="addProduct()"
+            />
+          </div>
+        </div>
+
+        <!-- table for the product details  -->
+        <div id="productTable"></div>
       </div>
     </div>
 
@@ -87,9 +130,9 @@
           <button id="login" onclick="loginForm()">Login</button>
         </div>
       </div>
-      <!-- <div id="displayData"></div> -->
     </div>
 
     <script src="./script.js"></script>
+    <script src="./productForm.js"></script>
   </body>
 </html>

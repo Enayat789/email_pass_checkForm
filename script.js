@@ -68,7 +68,7 @@ async function loginForm() {
     } else {
       try {
         const profileImageBase64 = await fileToBase64(profileInput);
-        console.log(profileImageBase64);
+        // console.log(profileImageBase64);
 
         const payload = {
           userName,
@@ -104,7 +104,7 @@ window.addEventListener("load", function () {
 
     createNavbar();
     const msg = "already logged in ";
-    showToast(msg, "success");
+    // showToast(msg, "success");
   }
 });
 
@@ -162,7 +162,6 @@ var isOpen = false; // boolean  true / false
 
 function closeProfile() {
   const showData = document.getElementById("displayData_2");
-
   if (isOpen) {
     isOpen = false;
     showData.id = "displayData";
@@ -188,7 +187,7 @@ function createNavbar() {
   navbar.appendChild(createLogoDiv);
 
   const userData = JSON.parse(localStorage.getItem("credentials"));
-  const { emailid, password, profileImage } = userData;
+  const { profileImage } = userData;
   // console.log("this is profile ", profileImage);
 
   const createEmailDiv = document.createElement("div");
@@ -259,13 +258,19 @@ function createView() {
   }
 }
 
-// taking the new value from input text in the profile section and the a file as a image for profile picture
+// taking the new value from input text in the profile section
+// and the a file as a image for profile picture
+
 async function updatedData() {
   const userName = document.getElementById("nameInput").value;
   const emailid = document.getElementById("emailInput").value;
   const contactNumber = document.getElementById("numberInput").value;
   const updatedProfileImage = document.getElementById("updatepictute").files[0];
   // console.log("images taken", updatedProfileImage);
+
+  // const { userName1, emailid1, contactNumbe1r, profileImage } =
+  //   localStorage.getItem("credentials");
+  // console.log("from local storage",objct1);
 
   if (updatedProfileImage == undefined) {
     if (JSON.parse(localStorage.getItem("credentials"))) {
@@ -280,6 +285,8 @@ async function updatedData() {
       };
 
       localStorage.setItem("credentials", JSON.stringify(payload));
+
+      // alert("updated");
       //
     } else {
       alert("data is not there");
@@ -298,6 +305,7 @@ async function updatedData() {
 
       if (JSON.parse(localStorage.getItem("credentials"))) {
         localStorage.setItem("credentials", JSON.stringify(payload));
+        // alert("updated");
       } else {
         alert("data is not there");
       }

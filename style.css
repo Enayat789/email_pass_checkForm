@@ -319,16 +319,6 @@ label {
   transition: all 200ms ease-in-out;
 }
 
-#behindForm {
-  margin: auto;
-  /* background-color: rgba(128, 128, 128, 0.398); */
-  background-color: var(--bgFor-btn-input);
-  height: 85%;
-  width: 100%;
-  display: none;
-  border-radius: 10px;
-}
-
 /* ****** displayData */
 
 #displayData {

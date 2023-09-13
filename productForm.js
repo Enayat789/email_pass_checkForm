@@ -59,18 +59,24 @@ function imgFor_product(event) {
 // // for the product table details
 const pTable = document.getElementById("productTable");
 pTable.innerHTML = `
-    <div class="product_heading">
+    <div class="product_headingDetails">
       <p>Product Details</p>
     </div>
     <div class="about_product">
-      <labe for="prdNew_name">
-      <input type="text" id="prdNew_name" name="prd_name" />
+
+    <label for="">
+
+    </label>
 
 
+      <label for="productName">Product Name: </label>
+      <input type="text" id="productName" name="productName" />
 
+      <label for="descriptionProduct">product description:</label>
+      <textarea id="descriptionProduct" name="" cols="20" rows="5"></textarea>
 
-
-      <labe for="">
+      <input type="button" id="" value="" />
+      
 
     </div>
 `;

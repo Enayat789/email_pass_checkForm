@@ -265,53 +265,46 @@ async function updatedData() {
   const userName = document.getElementById("nameInput").value;
   const emailid = document.getElementById("emailInput").value;
   const contactNumber = document.getElementById("numberInput").value;
-  const updatedProfileImage = document.getElementById("updatepictute").files[0];
-  // console.log("images taken", updatedProfileImage);
+  const updatedProfileImage =
+    document.getElementById("updatepictute")?.files[0];
 
-  // const { userName1, emailid1, contactNumbe1r, profileImage } =
-  //   localStorage.getItem("credentials");
-  // console.log("from local storage",objct1);
+  //  coverting  img file into base64 format...
+  try {
+    var newProfile = await fileToBase64(updatedProfileImage);
+  } catch (error) {
+    console.log("something is error");
+  }
 
-  if (updatedProfileImage == undefined) {
-    if (JSON.parse(localStorage.getItem("credentials"))) {
-      const alreadyData = JSON.parse(localStorage.getItem("credentials")); // getting data from local storage in a variable
-      const { profileImage } = alreadyData; // taking the image from the local storage
+  const oldData = JSON.parse(localStorage.getItem("credentials")); // getting data from local storage in a variable
+  var { profileImage } = oldData; // taking the image from the local storage
 
-      const payload = {
-        userName,
-        emailid,
-        contactNumber,
-        profileImage,
-      };
+  const newData = {
+    userName,
+    emailid,
+    contactNumber,
+    profileImage: newProfile ? newProfile : profileImage,
+  };
 
-      localStorage.setItem("credentials", JSON.stringify(payload));
+  // this is for chechimg
+  //no chnages in any profile fileds
+  const isOld = JSON.stringify(oldData) === JSON.stringify(newData);
 
-      // alert("updated");
-      //
-    } else {
-      alert("data is not there");
-    }
-    //
+  if (isOld) {
+    const msg = "no any changes in profile!!";
+    showToast(msg, "invalid");
+    closeProfile();
   } else {
-    try {
-      const profileUpdatedImage = await fileToBase64(updatedProfileImage);
+    // alert("sometimg new added");
+    const msg = "Profile updated successfully";
+    showToast(msg, "success");
+    //
+    localStorage.setItem("credentials", JSON.stringify(newData));
+    closeProfile();
 
-      const payload = {
-        userName,
-        emailid,
-        contactNumber,
-        profileImage: profileUpdatedImage,
-      }; // creating a new object
-
-      if (JSON.parse(localStorage.getItem("credentials"))) {
-        localStorage.setItem("credentials", JSON.stringify(payload));
-        // alert("updated");
-      } else {
-        alert("data is not there");
-      }
-    } catch (error) {
-      console.log("something is error");
-    }
+    //delaying the window reloading unit the toast hide
+    setTimeout(() => {
+      window.location.reload();
+    }, 4000);
   }
 }
 
@@ -381,7 +374,6 @@ function logout() {
 function updateProfile() {
   if (JSON.parse(localStorage.getItem("credentials"))) {
     // const alreadyData = JSON.parse(localStorage.getItem("credentials"));
-
     updatedData();
   }
 }

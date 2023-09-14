@@ -70,7 +70,47 @@
         </div>
 
         <!-- table for the product details  -->
-        <div id="productTable"></div>
+        <div id="productTable">
+          <div class="product_headingDetails">
+            <p>Product Details</p>
+          </div>
+          <div class="about_product">
+            <!--  -->
+            <div class="labelInput_file">
+              <p>Product Image:</p>
+              <label for="newProductImage" id="newImageLabel">
+                <input
+                  type="file"
+                  id="newProductImage"
+                  name="newProductImage"
+                  accept="image/*"
+                />
+              </label>
+            </div>
+
+            <div class="pNameDiv">
+              <!-- <label for="productName">Product Name: </label> -->
+              <p>Product Name:</p>
+              <input type="text" id="productName" name="productName" />
+            </div>
+
+            <div class="pDescription">
+              <p>Product description:</p>
+
+              <textarea
+                id="descriptionProduct"
+                name=""
+                cols="20"
+                rows="5"
+              ></textarea>
+            </div>
+
+            <div class="formButtons">
+              <input type="button" id="updateDetails" value="Update Details" />
+              <input type="button" id="updateDetails" value="Update Details" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

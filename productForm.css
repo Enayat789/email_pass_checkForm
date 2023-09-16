@@ -1,6 +1,5 @@
 #behindForm {
   margin: auto;
-  /* background-color: rgba(128, 128, 128, 0.398); */
   background-color: var(--bgFor-btn-input);
   height: 85%;
   width: 100%;
@@ -30,7 +29,6 @@
 }
 
 .form_product {
-  /* background-color: violet; */
   width: 100%;
   height: 85%;
   display: flex;
@@ -52,8 +50,6 @@
   height: 10%;
   border-radius: 5px;
   border: 2px solid var(--border-color);
-
-  /* width: ; */
 }
 
 #prd_description {
@@ -63,7 +59,6 @@
   padding: 5px;
   font-size: 15px;
   width: 70%;
-  /* height: 10%; */
   border-radius: 5px;
   border: 2px solid var(--border-color);
   color: var(--text-color);
@@ -101,7 +96,6 @@
 
 .form_product > label > img {
   object-fit: cover;
-  /* background-color: aqua; */
   width: 70px;
   height: 70px;
   border-radius: 50%;
@@ -125,26 +119,22 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* background-color: aqua; */
 }
 
 /* table main div ************************************************ */
 
 .about_product {
-  /* background-color: blueviolet; */
   width: 100%;
   height: 90%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  /* gap: 35px; */
 }
 
 /* **** labelInput_file ***** */
 
 .labelInput_file {
-  /* background-color: rgb(110, 183, 183); */
   width: 100%;
   height: 25%;
   display: flex;
@@ -170,10 +160,6 @@
   height: 90%;
   border-radius: 5px;
   border: 2px solid var(--border-color);
-  /* display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-around; */
 }
 
 #newProductImage {
@@ -182,7 +168,6 @@
 
 /* pNameDivpNameDivpNameDivpNameDiv  pNameDiv */
 .pNameDiv {
-  /* background-color: rgb(110, 183, 183); */
   width: 100%;
   height: 20%;
   display: flex;
@@ -211,8 +196,6 @@
 
 /* pDescription ********* */
 .pDescription {
-  /* background-color: rgb(121, 88, 152); */
-  /* background-color: rgb(110, 183, 183); */
   width: 100%;
   height: 25%;
   display: flex;
@@ -236,7 +219,6 @@
   font-size: 15px;
   width: 60%;
   height: 90%;
-  /* height: 18%; */
   border-radius: 5px;
   border: 2px solid var(--border-color);
   resize: none;
@@ -245,7 +227,6 @@
 /* css for updateDetails button ***** */
 
 .formButtons {
-  /* background-color: rgb(110, 183, 183); */
   width: 100%;
   height: 20%;
   display: flex;
@@ -266,5 +247,4 @@
   height: 50%;
   border-radius: 5px;
   border: 2px solid var(--border-color);
-  /* background-color: aqua; */
 }

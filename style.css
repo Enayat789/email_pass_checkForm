@@ -328,6 +328,7 @@ label {
   justify-content: center;
   width: 30vw;
   height: 100vh;
+  z-index: 99;
   background-color: var(--background-color);
   /* opacity: 0.7; */
   box-shadow: 0 29px 52px rgba(0, 0, 0, 0.4), 0 25px 16px rgba(0, 0, 0, 0.2);
@@ -339,6 +340,7 @@ label {
   display: flex;
   width: 30vw;
   height: 100vh;
+  z-index: 99;
   background-color: var(--background-color);
   box-shadow: 0 29px 52px rgba(0, 0, 0, 0.4), 0 25px 16px rgba(0, 0, 0, 0.2);
   position: absolute;

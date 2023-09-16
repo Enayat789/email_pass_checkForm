@@ -51,6 +51,8 @@ function imgFor_product(event) {
 
   const uploadedImage = document.getElementById("takeProductImage");
   uploadedImage.src = uploadImage;
+  const newUploadedImage = document.getElementById("show_newProductImage");
+  newUploadedImage.src = uploadImage;
 
   const showImage = document.getElementById("takeProductImage");
   showImage.style.display = "flex";

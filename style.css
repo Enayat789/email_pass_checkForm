@@ -20,20 +20,12 @@
   align-items: center;
   justify-content: center;
   background-color: var(--bgFor-btn-input);
-  /* background: rgb(238, 174, 202); */
-  /* background: radial-gradient(
-    circle,
-    rgba(238, 174, 202, 1) 0%,
-    rgba(148, 187, 233, 1) 100%
-  ); */
   width: 100vw;
   height: 100vh;
 }
 
 .main {
-  /* background-color: rgba(255, 255, 255, 0.329); */
   background-color: var(--bgFor-btn-input);
-  /* background-color: var(--text-color); */
   opacity: 0.8;
   display: flex;
   flex-direction: column;
@@ -73,15 +65,12 @@
   width: 75%;
   height: 12%;
   position: relative;
-  /* background-color: var(--background-color); */
-  /* background: #000; */
 }
 
 .commonDiv > i {
   position: absolute;
   right: 5px;
   cursor: pointer;
-  /* background-color: var(--bgFor-btn-input); */
 }
 
 #userName,
@@ -97,13 +86,10 @@
   font-size: 15px;
   border-radius: 5px;
   color: var(--text-color);
-  /* color: white; */
-  /* background-color: var(--bgFor-btn-input); */
   border: 2px solid var(--border-color);
 }
 
 .profilePicture {
-  /* background-color: var(--background-color); */
   background-color: white;
   display: flex;
   flex-direction: row;
@@ -133,9 +119,6 @@ label {
   cursor: pointer;
   border-radius: 5px;
   color: var(--text-color);
-  /* border: 1px solid var(--border-color); */
-  /* background-color: white; */
-  /* background-color: var(--bgFor-btn-input); */
 }
 #showImage {
   width: 30%;
@@ -161,12 +144,10 @@ label {
   outline: none;
   font-size: 17px;
   border-radius: 10px;
-  /* color: rgba(0, 128, 0, 0.776); */
   background-color: var(--bgFor-btn-input);
 }
 #login:hover {
   color: var(--text-color);
-  /* background-color: rgba(124, 223, 124, 0.392); */
   background-color: var(--bgFor-btn-input);
 }
 
@@ -273,7 +254,6 @@ label {
   flex-direction: row;
   display: none;
   border-radius: 10px;
-  /* box-shadow: inset -1px 3px 14px 7px rgba(0, 0, 0, 0.34); */
 }
 
 #logoDiv {
@@ -282,7 +262,6 @@ label {
   height: 100%;
   display: flex;
   align-items: center;
-  /* background-color: aqua; */
 }
 #logoDiv > i {
   background-color: white;
@@ -357,7 +336,6 @@ label {
   position: absolute;
   left: 10px;
   top: 10px;
-  /* background-color: var(--text-color); */
   border: 1px solid var(--border-color);
   border-radius: 17px;
 }
@@ -376,7 +354,6 @@ label {
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  /* background-color: rgb(178, 178, 142); */
 }
 .innerProfileImageDiv > img {
   width: 180px;
@@ -385,10 +362,8 @@ label {
   object-fit: cover;
   cursor: pointer;
   border: 1px solid var(--border-color);
-  /* transition: all 0.3s ease-in-out; */
 }
 .innerProfileImageDiv > label {
-  /* background-color: aqua; */
   width: 50px;
   height: 50px;
   display: flex;
@@ -397,7 +372,6 @@ label {
   cursor: pointer;
   border-radius: 50%;
   color: var(--text-color);
-  /* color: white; */
   position: relative;
   top: 50px;
   right: 45px;
@@ -428,7 +402,6 @@ label {
 /* &********** */
 
 .innerProfileDataDiv {
-  /* background-color: green; */
   width: 85%;
   height: 50%;
   margin: auto;
@@ -444,7 +417,6 @@ label {
 }
 
 .innerProfileDataDiv > span {
-  /* color: var(--text-color); */
   font-size: x-small;
   padding-left: 12px;
 }
@@ -459,7 +431,6 @@ label {
 }
 
 .editProfileDetails {
-  /* background-color: rgb(188, 213, 29); */
   width: 100%;
   height: 10%;
   display: flex;
@@ -468,7 +439,6 @@ label {
 }
 
 #editButton {
-  /* background-color: rgba(255, 255, 255, 0.177); */
   background-color: var(--bgFor-btn-input);
   width: 60%;
   height: 80%;
@@ -483,7 +453,6 @@ label {
 }
 
 .logoutUser {
-  /* background-color: var(--bgFor-btn-input); */
   width: 100%;
   height: 10%;
   display: flex;
